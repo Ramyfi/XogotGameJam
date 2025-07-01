@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv683i84snfl5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
+albedo_color = Color(1.01075e-06, 0.395359, 0.570936, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgr22"]
+radius = 0.1
+height = 0.2
+
+[node name="Bimple" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_3dxm6")
+mesh = SubResource("SphereMesh_lgr22")
+skeleton = NodePath("../VeggieDropper")

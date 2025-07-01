@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq3rswqpk3rfo"]
+
+[ext_resource type="PackedScene" uid="uid://bcdw1lh051grd" path="res://models/tomato.blend" id="1_ajaoc"]
+[ext_resource type="ArrayMesh" uid="uid://bxagxqsy8yh6m" path="res://tomato.tres" id="2_bka0x"]
+[ext_resource type="ArrayMesh" uid="uid://b0winh7cukbj0" path="res://stem.tres" id="3_kg4fp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xo0b"]
+albedo_color = Color(1, 0.137255, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qk7vq"]
+points = PackedVector3Array(0.337901, 0.0717715, 1.0909, -0.210473, -0.0448755, -1.26093, -0.21085, 0.0341023, -1.26285, -1.24024, -0.044715, 0.158693, 0.611823, -0.98242, -0.0782805, 0.608087, 0.691949, -0.233182, 1.29076, -0.241942, -0.157567, -0.750719, -0.82185, 0.27113, -0.636313, 0.733988, -0.0396096, -0.671475, -0.665389, -0.698521, 0.689182, -0.278925, -1.09285, 0.182717, -0.515773, 1.05995, -0.640805, 0.0333918, 0.980802, 1.08959, -0.280831, 0.669879, -0.990281, 0.267597, -0.703862, 0.219305, 0.650276, 0.578837, 0.413492, 0.497107, -0.891887, 1.07524, 0.304422, 0.387819, 0.996104, 0.226252, -0.66025, 0.103444, -0.666601, -0.932982, -0.284444, 0.614246, -0.776873, -1.03623, -0.319934, -0.668672, -0.630915, 0.45685, 0.69465, -0.791152, -0.473215, 0.777848, 0.723717, -0.820469, 0.503044, 1.00208, -0.747813, -0.234255, 0.413211, -0.935822, -0.504005, -0.20678, -0.782129, 0.736316, 0.143157, 0.815367, -0.273985, -1.14443, 0.305977, 0.155672, -1.11128, -0.515429, 0.078335, 0.535754, 0.0726872, -1.17641)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajaoc"]
+albedo_color = Color(1, 0.137255, 0, 1)
+
+[node name="tomato" instance=ExtResource("1_ajaoc")]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." index="0"]
+gravity_scale = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" index="0"]
+transform = Transform3D(1.453, 0, 0, 0, 1.453, 0, 0, 0, 1.453, 0.226553, 0.538769, 0.119553)
+material_override = SubResource("StandardMaterial3D_7xo0b")
+mesh = ExtResource("2_bka0x")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D/MeshInstance3D" index="0"]
+transform = Transform3D(-0.338805, 0.188848, -0.0371375, 0.0990684, 0.660299, -0.0132579, 0.0319924, -0.0447637, -0.352239, -0.0382335, -0.873894, 0.0436664)
+mesh = ExtResource("3_kg4fp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="1"]
+transform = Transform3D(1.453, 0, 0, 0, 1.453, 0, 0, 0, 1.453, 0.226553, 0.538769, 0.119553)
+shape = SubResource("ConvexPolygonShape3D_qk7vq")
+
+[node name="Light" parent="." index="1"]
+visible = false
+
+[node name="Camera" parent="." index="2"]
+visible = false
+
+[node name="Stem" parent="." index="3"]
+visible = false
+mesh = ExtResource("3_kg4fp")
+
+[node name="Tomato" parent="." index="4"]
+visible = false
+mesh = ExtResource("2_bka0x")
+surface_material_override/0 = SubResource("StandardMaterial3D_ajaoc")

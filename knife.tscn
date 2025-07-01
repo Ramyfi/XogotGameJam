@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhkkpxe850278"]
+
+[ext_resource type="PackedScene" uid="uid://bt5eacumyeim" path="res://models/Knife.blend" id="1_mawn3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mawn3"]
+
+[node name="Knife" instance=ExtResource("1_mawn3")]
+
+[node name="Light" parent="." index="1"]
+visible = false
+
+[node name="Blade" parent="." index="3"]
+transform = Transform3D(1.2, 0, 0, 0, 0.01, 0, 0, 0, 0.447, -2.10927, 0, -0.288065)
+material_override = SubResource("StandardMaterial3D_mawn3")

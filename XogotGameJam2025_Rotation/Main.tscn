@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgj4bscex2due"]
+
+[ext_resource type="PackedScene" uid="uid://bvmwk35aa0qjk" path="res://Cube.tscn" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="2_uu6xs"]
+
+[node name="MAIN" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0395369, 2.25306, 1.71189)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.995843, 0.065484, -0.0633106, -0.0416218, 0.94542, 0.323185, 0.0810186, -0.319207, 0.944216, 0.0202097, 0.720623, 1.88553)
+fov = 92.597
+
+[node name="Cube" parent="." instance=ExtResource("1_glv2v")]
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("2_uu6xs")]

@@ -1,0 +1,228 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjg4ao2yx007u"]
+
+[ext_resource type="Script" uid="uid://ibx2lkyhe1yg" path="res://Menu.gd" id="1_lti8b"]
+[ext_resource type="Shader" uid="uid://heavlks0t66a" path="res://menu.gdshader" id="2_g7jxm"]
+[ext_resource type="Texture2D" uid="uid://h6y2d013mnnu" path="res://assets/art/menu.tres" id="2_kk3ma"]
+[ext_resource type="FontFile" uid="uid://7k7npi46jwda" path="res://assets/fonts/Game Paused DEMO.otf" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://bsflfcn14kyiv" path="res://assets/art/onion.png" id="4_jspdm"]
+[ext_resource type="Texture2D" uid="uid://vtwaaw16fl3r" path="res://assets/art/tomato.png" id="5_oxnod"]
+[ext_resource type="Texture2D" uid="uid://drisn6hqgvaem" path="res://assets/art/lettuce.png" id="6_gd0jp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8uog0"]
+shader = ExtResource("2_g7jxm")
+shader_parameter/shine_width = 0.2
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouk20"]
+bg_color = Color(0.730762, 0.412424, 0.262941, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.782633, 0.110876, 0.0424515, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
+bg_color = Color(0.729412, 0.411765, 0.262745, 1)
+border_width_left = 5
+border_width_top = 6
+border_width_right = 5
+border_width_bottom = 4
+border_color = Color(0.784314, 0.109804, 0.0431373, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.752941, 0.466667, 0.92549, 0.701961)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
+bg_color = Color(0.643137, 0.352941, 0.215686, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.886275, 0.439216, 0.0313726, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kk3ma")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect"]
+layout_mode = 2
+offset_left = 406.0
+offset_top = 176.0
+offset_right = 563.0
+offset_bottom = 215.0
+scale = Vector2(2.0916, 1.98416)
+
+[node name="Label" type="Label" parent="TextureRect/CenterContainer"]
+material = SubResource("ShaderMaterial_8uog0")
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_font_sizes/font_size = 28
+text = "Veggie Chop!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu" type="VBoxContainer" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -35.0
+offset_right = -38.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.2, 1.84)
+alignment = 1
+
+[node name="Play" type="Button" parent="TextureRect/main_menu"]
+texture_filter = 1
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Play"
+
+[node name="Settings" type="Button" parent="TextureRect/main_menu"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_font_sizes/font_size = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="TextureRect/main_menu"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_font_sizes/font_size = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Exit"
+
+[node name="options_menu" type="VBoxContainer" parent="TextureRect"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -38.0
+offset_right = -41.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.2, 1.84)
+alignment = 1
+
+[node name="Volume" type="Button" parent="TextureRect/options_menu"]
+texture_filter = 1
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Preset
+"
+
+[node name="Back" type="Button" parent="TextureRect/options_menu"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ouk20")
+theme_override_font_sizes/font_size = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hy44")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Back
+"
+
+[node name="Node2D" type="Node2D" parent="TextureRect"]
+position = Vector2(-1, 3)
+
+[node name="TomatoForeground" type="Sprite2D" parent="TextureRect/Node2D"]
+modulate = Color(1, 1, 1, 0.301961)
+texture_filter = 1
+position = Vector2(154, 345)
+scale = Vector2(19, 18.7656)
+texture = ExtResource("5_oxnod")
+
+[node name="OnionForeground" type="Sprite2D" parent="TextureRect/Node2D"]
+modulate = Color(1, 1, 1, 0.305882)
+self_modulate = Color(1, 1, 1, 0.788235)
+texture_filter = 1
+position = Vector2(1057, 121)
+scale = Vector2(10.0625, 7.92188)
+texture = ExtResource("4_jspdm")
+
+[node name="LettuceForeground" type="Sprite2D" parent="TextureRect/Node2D"]
+modulate = Color(1, 1, 1, 0.290196)
+self_modulate = Color(1, 1, 1, 0.764706)
+texture_filter = 1
+position = Vector2(942, 513)
+scale = Vector2(15.4219, 15.6797)
+texture = ExtResource("6_gd0jp")
+
+[node name="Tomato" type="Sprite2D" parent="TextureRect/Node2D"]
+texture_filter = 1
+position = Vector2(378, 216)
+texture = ExtResource("5_oxnod")
+
+[node name="Onion" type="Sprite2D" parent="TextureRect/Node2D"]
+texture_filter = 1
+position = Vector2(757, 218)
+texture = ExtResource("4_jspdm")
+
+[connection signal="pressed" from="TextureRect/main_menu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="TextureRect/main_menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="TextureRect/main_menu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="TextureRect/options_menu/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="TextureRect/options_menu/Back" to="." method="_on_back_pressed"]
