@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://yfi2jy6p1tnj"]
+
+[ext_resource type="Script" uid="uid://b4gww8c7eg4h4" path="res://CubeRotation.gd" id="1_a202f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a202f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3834"]
+albedo_color = Color(0.192157, 0.596078, 0.905882, 1)
+
+[node name="Veggie" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("1_a202f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_a202f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_k3834")

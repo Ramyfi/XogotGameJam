@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://devr0cr8vu3h6"]
+
+[ext_resource type="PackedScene" uid="uid://b28win08lxwp3" path="res://cutting_board.tscn" id="2_lgr22"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://bvokg2bivr208" path="res://PlayerSlicer.gd" id="4_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://dhkkpxe850278" path="res://knife.tscn" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://cxm0mvbs8dtd8" path="res://veggie_dropper.gd" id="5_trn2v"]
+[ext_resource type="PackedScene" uid="uid://costtacvbn64x" path="res://timer.tscn" id="7_lgr22"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_trn2v"]
+flip_faces = true
+size = Vector2(4, 4)
+orientation = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3dxm6"]
+points = PackedVector3Array(-2.03175, -2.03175, -0.031746, 2.03175, 2.03175, 0.031746, 2.03175, 2.03175, -0.031746, -2.03175, 2.03175, 0.031746, 2.03175, -2.03175, 0.031746, 2.03175, -2.03175, -0.031746, -2.03175, 2.03175, -0.031746, -2.03175, -2.03175, 0.031746)
+
+[sub_resource type="Animation" id="Animation_fos0i"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 3.5, 1.2, 0)
+
+[sub_resource type="Animation" id="Animation_cm0pq"]
+resource_name = "chop"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 3.5, 1.2, 0, 0.05, 1, 3.5, 1.5, 0, 0.25, 1, 3.5, -1, 0, 1, 1, 3.5, 1.2, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fos0i"]
+_data = {
+&"RESET": SubResource("Animation_fos0i"),
+&"chop": SubResource("Animation_cm0pq")
+}
+
+[node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0395369, 2.25306, 1.71189)
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("2_uu6xs")]
+
+[node name="Timer" parent="." instance=ExtResource("7_lgr22")]
+
+[node name="CuttingBoard" parent="." instance=ExtResource("2_lgr22")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.77779, 0)
+
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("4_3dxm6")
+
+[node name="Slicer" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28995, 0)
+
+[node name="SlicePlane" type="MeshInstance3D" parent="Player/Slicer"]
+mesh = SubResource("PlaneMesh_trn2v")
+skeleton = NodePath("../Knife")
+
+[node name="Area3D" type="Area3D" parent="Player/Slicer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Slicer/Area3D"]
+shape = SubResource("ConvexPolygonShape3D_3dxm6")
+
+[node name="Knife" parent="Player/Slicer" instance=ExtResource("5_lgr22")]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 3.5, 1.2, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Slicer/Knife"]
+libraries = {
+&"": SubResource("AnimationLibrary_fos0i")
+}
+
+[node name="VeggieDropper" type="Node3D" parent="."]
+script = ExtResource("5_trn2v")

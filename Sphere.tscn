@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqshfu5fpm21a"]
+
+[ext_resource type="Script" uid="uid://1owl4ltac3us" path="res://CubeRotation.gd" id="1_tv74r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_otkkm"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_tv74r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iisei"]
+albedo_color = Color(1, 0, 0.317647, 1)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+input_capture_on_drag = true
+script = ExtResource("1_tv74r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00331569, 1.24762, -0.00181103)
+shape = SubResource("SphereShape3D_otkkm")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_tv74r")
+material = SubResource("StandardMaterial3D_iisei")

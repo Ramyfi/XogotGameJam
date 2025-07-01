@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgj4bscex2due"]
+
+[ext_resource type="PackedScene" uid="uid://yfi2jy6p1tnj" path="res://Cube.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://qran2em5kgcs" path="res://PushButton.gd" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://bvokg2bivr208" path="res://PlayerSlicer.gd" id="3_r0du0"]
+[ext_resource type="PackedScene" uid="uid://dhkkpxe850278" path="res://knife.tscn" id="5_fos0i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cm0pq"]
+
+[node name="MAIN" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0395369, 2.25306, 1.71189)
+
+[node name="Veggie" parent="." instance=ExtResource("1_glv2v")]
+
+[node name="Virtual Button" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_cm0pq")
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("2_uu6xs")]
+
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("3_r0du0")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.906308, 0, -0.422618, 0, 1, 0, 0.422618, 0, 0.906308, -0.551831, 0.720623, 3.26835)
+fov = 92.597
+
+[node name="Slicer" type="Node3D" parent="Player"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Slicer"]
+
+[node name="Knife2" parent="Player/Slicer" instance=ExtResource("5_fos0i")]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0.318775, 2.18343, 2.35577)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Slicer/Knife2"]
+
+[node name="Area3D" type="Area3D" parent="Player/Slicer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Slicer/Area3D"]
+shape = SubResource("BoxShape3D_cm0pq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
